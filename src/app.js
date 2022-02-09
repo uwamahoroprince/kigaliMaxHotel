@@ -1,9 +1,8 @@
 const express = require("express");
 const res = require("express/lib/response");
-
+const dotenv = require("dotenv");
 const app = express();
 const path = require("path");
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../src/views"));
 
@@ -57,6 +56,7 @@ app.get("/404", (req, res) => {
 app.get("/blog-single", (req, res) => {
   res.render("blog-single");
 });
-app.listen(3000, () => {
+dotenv.config({ path: "./config/config.env" });
+app.listen(process.env.PORT || 3000, () => {
   console.log("app running");
 });
